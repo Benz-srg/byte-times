@@ -351,10 +351,7 @@ svg[shape-rendering="crispEdges"] { image-rendering: pixelated; }
 .official-badge { color: var(--green); font-size: 10px; letter-spacing: 0.06em; }
 
 /* ───── LOGO THEME ADAPTATION ───── */
-/* Dual-URL logos: show correct version per theme */
-[data-theme="night"] .logo-day   { display: none; }
-[data-theme="day"]   .logo-night { display: none; }
-/* Single white-only logos: invert to dark in day mode */
+/* White logos: invert to black in day (light) mode */
 [data-theme="day"] .post-thumb .logo-white { filter: invert(1); }
 
 @media (prefers-reduced-motion: reduce) {
