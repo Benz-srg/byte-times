@@ -6,6 +6,7 @@ const POSTS: Post[] = [
     id: '1',
     cat: 'llm',
     sprite: 'chip',
+    svgl: 'https://svgl.app/library/claude-ai-icon.svg',
     time: '05:00Z',
     readTime: '6 min read',
     title: 'Claude Opus 4.7 launches with 1M-token context and extended thinking mode',
@@ -18,6 +19,7 @@ const POSTS: Post[] = [
     id: '2',
     cat: 'code',
     sprite: 'dex',
+    svgl: 'https://svgl.app/library/anthropic_white.svg',
     time: '1 hr ago',
     readTime: '4 min read',
     title: 'Claude Code passes 1M active developers — Anthropic opens a free tier',
@@ -30,6 +32,7 @@ const POSTS: Post[] = [
     id: '3',
     cat: 'mcp',
     sprite: 'mux',
+    svgl: 'https://svgl.app/library/anthropic_white.svg',
     time: '2 hr ago',
     readTime: '5 min read',
     title: 'MCP 1.5 spec lands: auth, streaming, and typed tool schemas',
@@ -42,6 +45,7 @@ const POSTS: Post[] = [
     id: '4',
     cat: 'llm',
     sprite: 'scope',
+    svgl: 'https://svgl.app/library/gemini.svg',
     time: '3 hr ago',
     readTime: '5 min read',
     title: 'Google Gemini 2.5 Ultra breaks MMLU-Pro, bumps context to 2M tokens',
@@ -66,6 +70,7 @@ const POSTS: Post[] = [
     id: '6',
     cat: 'code',
     sprite: 'dex',
+    svgl: 'https://svgl.app/library/cursor_dark.svg',
     time: '5 hr ago',
     readTime: '4 min read',
     title: 'Cursor 1.0 goes GA: full-repo agents, background tasks, instant apply',
@@ -78,6 +83,7 @@ const POSTS: Post[] = [
     id: '7',
     cat: 'rag',
     sprite: 'libby',
+    svgl: 'https://svgl.app/library/postgresql.svg',
     time: '6 hr ago',
     readTime: '7 min read',
     title: 'pgvector 0.8 ships HNSW reranking — Postgres becomes a serious vector DB',
@@ -114,6 +120,7 @@ const POSTS: Post[] = [
     id: '10',
     cat: 'llm',
     sprite: 'chip',
+    svgl: 'https://svgl.app/library/meta.svg',
     time: '11 hr ago',
     readTime: '8 min read',
     title: "Meta's Llama 4 Maverick: 400B MoE, Apache 2.0, and a surprise coding score",
@@ -138,6 +145,7 @@ const POSTS: Post[] = [
     id: '12',
     cat: 'mcp',
     sprite: 'mux',
+    svgl: 'https://svgl.app/library/openrouter_dark.svg',
     time: '16 hr ago',
     readTime: '3 min read',
     title: 'OpenRouter crosses 2B daily tokens — adds MCP gateway and model health scores',
@@ -174,20 +182,22 @@ export default function Page() {
         </div>
       </header>
 
-      <section id="top" className="lead">
-        <div className="lead-inner">
-          <div className="kicker">
-            <span className="dot" />
-            Today · AI news
+      <main className="page-main">
+        <section id="top" className="lead">
+          <div className="lead-inner">
+            <div className="kicker">
+              <span className="dot" />
+              Today · AI news
+            </div>
+            <h1>Daily dispatches from the AI grid</h1>
+            <p className="sub">
+              A simple, quiet reading board for AI news. One scroll, one cup of coffee. Updated every morning.
+            </p>
           </div>
-          <h1>Daily dispatches from the AI grid</h1>
-          <p className="sub">
-            A simple, quiet reading board for AI news. One scroll, one cup of coffee. Updated every morning.
-          </p>
-        </div>
-      </section>
+        </section>
 
-      <FeedSection posts={POSTS} chips={CHIPS} />
+        <FeedSection posts={POSTS} chips={CHIPS} />
+      </main>
 
       <footer className="footer">
         <div className="footer-inner">

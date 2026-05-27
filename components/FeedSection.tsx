@@ -1,12 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { Sprite, SpriteName } from './Sprite';
 
 export type Post = {
   id: string;
   cat: string;
   sprite: SpriteName;
+  svgl?: string;
   time: string;
   readTime: string;
   title: string;
@@ -21,6 +23,24 @@ type Props = {
   chips: Array<{ filter: string; label: string; count: number }>;
 };
 
+function ThumbLogo({ post }: { post: Post }) {
+  if (post.svgl) {
+    return (
+      <div style={{ position: 'relative', zIndex: 1, width: 52, height: 52, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Image
+          src={post.svgl}
+          alt={post.title}
+          width={52}
+          height={52}
+          style={{ objectFit: 'contain', imageRendering: 'auto' }}
+          unoptimized
+        />
+      </div>
+    );
+  }
+  return <Sprite name={post.sprite} scale={3} />;
+}
+
 export function FeedSection({ posts, chips }: Props) {
   const [active, setActive] = useState('all');
   const [done, setDone] = useState(false);
@@ -30,19 +50,19 @@ export function FeedSection({ posts, chips }: Props) {
   return (
     <>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', paddingInline: 'var(--pad-x)' }}>
-      <nav className="chips" aria-label="Filter by sector">
-        {chips.map((c) => (
-          <button
-            key={c.filter}
-            className={`chip${active === c.filter ? ' active' : ''}`}
-            onClick={() => setActive(c.filter)}
-          >
-            <span className="hash">#</span>
-            {c.label}
-            <span className="count">{c.count}</span>
-          </button>
-        ))}
-      </nav>
+        <nav className="chips" aria-label="Filter by sector">
+          {chips.map((c) => (
+            <button
+              key={c.filter}
+              className={`chip${active === c.filter ? ' active' : ''}`}
+              onClick={() => setActive(c.filter)}
+            >
+              <span className="hash">#</span>
+              {c.label}
+              <span className="count">{c.count}</span>
+            </button>
+          ))}
+        </nav>
       </div>
 
       <section className="feed">
@@ -50,7 +70,7 @@ export function FeedSection({ posts, chips }: Props) {
           {visible.map((p) => (
             <article key={p.id} className="post" data-cat={p.cat}>
               <div className="post-thumb">
-                <Sprite name={p.sprite} scale={3} />
+                <ThumbLogo post={p} />
               </div>
               <div className="post-body">
                 <div className="post-meta">
@@ -66,7 +86,7 @@ export function FeedSection({ posts, chips }: Props) {
                   <span className="by">{p.author}</span>
                   <span className="sep">·</span>
                   <span>{p.desk}</span>
-                  <a href={p.href}>Read →</a>
+                  <a href={p.href} target="_blank" rel="noopener noreferrer">Read →</a>
                 </div>
               </div>
             </article>
