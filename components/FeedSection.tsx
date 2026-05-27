@@ -9,6 +9,7 @@ export type Post = {
   cat: string;
   sprite: SpriteName;
   svgl?: string;
+  logoVariant?: 'white' | 'dark';
   time: string;
   readTime: string;
   title: string;
@@ -44,6 +45,7 @@ function ThumbLogo({ post }: { post: Post }) {
           alt=""
           width={56}
           height={56}
+          className={post.logoVariant ? `logo-${post.logoVariant}` : undefined}
           style={{ objectFit: 'contain', imageRendering: 'auto', width: '100%', height: '100%' }}
           unoptimized
         />

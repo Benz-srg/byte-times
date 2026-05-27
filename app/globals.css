@@ -327,6 +327,35 @@ svg[shape-rendering="crispEdges"] { image-rendering: pixelated; }
   .lead { padding-top: 28px; }
 }
 
+/* ───── SKILLS PAGE ───── */
+.skills-post { text-decoration: none !important; color: inherit !important; display: grid; }
+.skills-post:hover { text-decoration: none !important; }
+.skills-rank {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; background: var(--accent-soft) !important;
+}
+.rank-num {
+  font-family: var(--font-mono); font-size: 24px; font-weight: 700;
+  color: var(--accent); line-height: 1;
+}
+.install-cmd {
+  margin: 0 !important;
+  font-size: 12px !important;
+  color: var(--ink-fade) !important;
+}
+.install-cmd code {
+  font-family: var(--font-mono); font-size: 12px;
+  background: var(--paper-hi); padding: 2px 6px;
+  border: 1px solid var(--rule);
+}
+.official-badge { color: var(--green); font-size: 10px; letter-spacing: 0.06em; }
+
+/* ───── LOGO THEME ADAPTATION ───── */
+/* White logos (like Anthropic white): invert to dark in day mode */
+[data-theme="day"] .post-thumb .logo-white { filter: brightness(0); }
+/* Dark logos (like OpenRouter dark): invert to light in night mode */
+[data-theme="night"] .post-thumb .logo-dark { filter: invert(1) brightness(2); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
