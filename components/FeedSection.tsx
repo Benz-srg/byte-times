@@ -83,7 +83,7 @@ export function FeedSection({ posts, chips }: Props) {
         <div className="feed-inner">
           {visible.map((p) => (
             <article key={p.id} className="post" data-cat={p.cat}>
-              <div className="post-thumb">
+              <div className="post-thumb" data-logo-variant={p.logoVariant}>
                 <ThumbLogo post={p} />
               </div>
               <div className="post-body">

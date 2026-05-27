@@ -351,10 +351,9 @@ svg[shape-rendering="crispEdges"] { image-rendering: pixelated; }
 .official-badge { color: var(--green); font-size: 10px; letter-spacing: 0.06em; }
 
 /* ───── LOGO THEME ADAPTATION ───── */
-/* White logos (like Anthropic white): invert to dark in day mode */
-[data-theme="day"] .post-thumb .logo-white { filter: brightness(0); }
-/* Dark logos (like OpenRouter dark): invert to light in night mode */
-[data-theme="night"] .post-thumb .logo-dark { filter: invert(1) brightness(2); }
+/* White logos always need dark bg; dark logos always need light bg */
+.post-thumb[data-logo-variant="white"] { background: #1e2640 !important; }
+.post-thumb[data-logo-variant="dark"]  { background: #f0ece0 !important; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
