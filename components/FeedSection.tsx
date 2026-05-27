@@ -9,7 +9,8 @@ export type Post = {
   cat: string;
   sprite: SpriteName;
   svgl?: string;
-  logoVariant?: 'white' | 'dark';
+  svglDay?: string;
+  logoVariant?: 'white';
   time: string;
   readTime: string;
   title: string;
@@ -24,29 +25,44 @@ type Props = {
   chips: Array<{ filter: string; label: string; count: number }>;
 };
 
+const imgStyle: React.CSSProperties = {
+  objectFit: 'contain',
+  imageRendering: 'auto',
+  width: '100%',
+  height: '100%',
+};
+
 function ThumbLogo({ post }: { post: Post }) {
   if (post.svgl) {
+    const wrapStyle: React.CSSProperties = {
+      position: 'relative',
+      zIndex: 1,
+      width: 56,
+      height: 56,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 4,
+    };
+    if (post.svglDay) {
+      return (
+        <div style={wrapStyle}>
+          {/* night-only: white logo */}
+          <Image src={post.svgl} alt="" width={56} height={56} className="logo-night" style={imgStyle} unoptimized />
+          {/* day-only: dark logo */}
+          <Image src={post.svglDay} alt="" width={56} height={56} className="logo-day" style={{ ...imgStyle, position: 'absolute', inset: 4 }} unoptimized />
+        </div>
+      );
+    }
     return (
-      <div
-        style={{
-          position: 'relative',
-          zIndex: 1,
-          width: 56,
-          height: 56,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: 'var(--ink)',
-          padding: 4,
-        }}
-      >
+      <div style={wrapStyle}>
         <Image
           src={post.svgl}
           alt=""
           width={56}
           height={56}
           className={post.logoVariant ? `logo-${post.logoVariant}` : undefined}
-          style={{ objectFit: 'contain', imageRendering: 'auto', width: '100%', height: '100%' }}
+          style={imgStyle}
           unoptimized
         />
       </div>
@@ -83,7 +99,7 @@ export function FeedSection({ posts, chips }: Props) {
         <div className="feed-inner">
           {visible.map((p) => (
             <article key={p.id} className="post" data-cat={p.cat}>
-              <div className="post-thumb" data-logo-variant={p.logoVariant}>
+              <div className="post-thumb" data-logo-variant={p.logoVariant ?? (p.svglDay ? 'dual' : undefined)}>
                 <ThumbLogo post={p} />
               </div>
               <div className="post-body">

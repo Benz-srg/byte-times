@@ -351,9 +351,11 @@ svg[shape-rendering="crispEdges"] { image-rendering: pixelated; }
 .official-badge { color: var(--green); font-size: 10px; letter-spacing: 0.06em; }
 
 /* ───── LOGO THEME ADAPTATION ───── */
-/* White logos always need dark bg; dark logos always need light bg */
-.post-thumb[data-logo-variant="white"] { background: #1e2640 !important; }
-.post-thumb[data-logo-variant="dark"]  { background: #f0ece0 !important; }
+/* Dual-URL logos: show correct version per theme */
+[data-theme="night"] .logo-day   { display: none; }
+[data-theme="day"]   .logo-night { display: none; }
+/* Single white-only logos: invert to dark in day mode */
+[data-theme="day"] .post-thumb .logo-white { filter: invert(1); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
