@@ -26,13 +26,25 @@ type Props = {
 function ThumbLogo({ post }: { post: Post }) {
   if (post.svgl) {
     return (
-      <div style={{ position: 'relative', zIndex: 1, width: 52, height: 52, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 1,
+          width: 56,
+          height: 56,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'var(--ink)',
+          padding: 4,
+        }}
+      >
         <Image
           src={post.svgl}
-          alt={post.title}
-          width={52}
-          height={52}
-          style={{ objectFit: 'contain', imageRendering: 'auto' }}
+          alt=""
+          width={56}
+          height={56}
+          style={{ objectFit: 'contain', imageRendering: 'auto', width: '100%', height: '100%' }}
           unoptimized
         />
       </div>
